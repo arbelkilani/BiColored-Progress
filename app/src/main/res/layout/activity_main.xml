@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.arbelkilani.twicedprogressbar.MainActivity">
+
+    <com.arbelkilani.bicoloredprogress.BiColoredProgress
+        android:id="@+id/twice_colored_progress"
+        android:layout_width="@dimen/dimen_150dp"
+        android:layout_height="@dimen/dimen_150dp"
+        android:layout_centerInParent="true"
+        app:duration="4000"
+        app:inner_alpha_factor="0.3"
+        app:label="@string/gain"
+        app:left_sided_color="@color/moss"
+        app:right_sided_color="@color/warm"
+        app:stroke_width="4dp" />
+
+</RelativeLayout>

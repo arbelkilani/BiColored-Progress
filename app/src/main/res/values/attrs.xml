@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TwiceColoredProgress">
+
+        <attr name="stroke_width" format="dimension"/>
+        <attr name="inner_alpha_factor" format="float"/>
+
+        <attr name="right_sided_color" format="color"/>
+        <attr name="left_sided_color" format="color"/>
+
+        <attr name="progress" format="float"/>
+        <attr name="duration" format="integer"/>
+        <attr name="label" format="string"/>
+
+    </declare-styleable>
+
+</resources>
