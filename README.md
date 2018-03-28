@@ -5,6 +5,8 @@
 
 Beautiful and animated bi-colored circular progress.
 
+![screen](https://image.ibb.co/eRz5Zn/device_2018_03_29_001903.png)
+
 ## Setup
 
 Add to your module's build.gradle:
