@@ -10,6 +10,8 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.animation.FastOutLinearInInterpolator;
+import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -22,6 +24,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.Interpolator;
 import android.view.animation.Transformation;
 
 import java.math.RoundingMode;
@@ -61,6 +65,7 @@ public class BiColoredProgress extends View {
     protected float mProgress;
     protected String mLabel;
     protected int mDuration;
+    protected Interpolator mInterpolator;
 
     // animation
 
@@ -103,6 +108,7 @@ public class BiColoredProgress extends View {
 
             mDuration = typedArray.getInt(R.styleable.TwiceColoredProgress_duration, DEFAULT_ANIMATION_DURATION);
 
+            mInterpolator = new AccelerateDecelerateInterpolator();
             typedArray.recycle();
         }
 
@@ -244,17 +250,14 @@ public class BiColoredProgress extends View {
     }
 
     /**
-     *
      * @param progress
      */
     public void setProgress(float progress) {
-
         mProgress = progress;
         invalidate();
     }
 
     /**
-     *
      * @param canAnimate
      */
     public void setAnimated(boolean canAnimate) {
@@ -264,13 +267,22 @@ public class BiColoredProgress extends View {
     }
 
     /**
-     *
      * @param canAnimate
      * @param animationDuration
      */
     public void setAnimated(boolean canAnimate, int animationDuration) {
-        if (canAnimate) {
+        if (canAnimate && animationDuration > 0) {
             startAnimation(new ResizeAnimation(mProgress, animationDuration));
+        } else {
+            startAnimation(new ResizeAnimation(mProgress));
+        }
+    }
+
+    public void setAnimated(boolean canAnimate, int animationDuration, Interpolator interpolator) {
+        if (canAnimate && interpolator != null && animationDuration > 0) {
+            startAnimation(new ResizeAnimation(mProgress, animationDuration, interpolator));
+        } else {
+            startAnimation(new ResizeAnimation(mProgress));
         }
     }
 
@@ -292,6 +304,14 @@ public class BiColoredProgress extends View {
             mToProgress = toProgress;
             setDuration(mDuration);
             setInterpolator(new AccelerateDecelerateInterpolator());
+        }
+
+        public ResizeAnimation(float toProgress, int animationDuration, Interpolator interpolator) {
+            mDuration = animationDuration;
+            mToProgress = toProgress;
+            mInterpolator = interpolator;
+            setDuration(mDuration);
+            setInterpolator(mInterpolator);
         }
 
         @Override

@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">BiColored Progress</string>
-    <string name="gain">gain</string>
+    <string name="gain">Total gain</string>
+
+    <!-- interpolators -->
+    <string name="bounce">BounceInterpolator</string>
+    <string name="fastOutSlowIn">FastOutSlowInInterpolator</string>
+    <string name="fastOutLinearIn">FastOutSlowInInterpolator</string>
+    <string name="overshoot">OvershootInterpolator</string>
+    <string name="accelerateDecelerate">AccelerateDecelerateInterpolator</string>
+    <string name="anticipate">AnticipateInterpolator</string>
+
 </resources>
