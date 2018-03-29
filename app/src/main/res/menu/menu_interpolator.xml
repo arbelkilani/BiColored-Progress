@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bounce"
+        android:title="@string/bounce"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/fastOutSlowIn"
+        android:title="@string/fastOutSlowIn"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/fastOutLinearIn"
+        android:title="@string/fastOutLinearIn"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/overshoot"
+        android:title="@string/overshoot"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/accelerateDecelerate"
+        android:title="@string/accelerateDecelerate"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/anticipate"
+        android:title="@string/anticipate"
+        app:showAsAction="never"/>
+
+</menu>
