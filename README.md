@@ -3,9 +3,9 @@
 [![](https://jitpack.io/v/arbelkilani/BiColored-Progress.svg)](https://jitpack.io/#arbelkilani/BiColored-Progress)
 [![API](https://img.shields.io/badge/API-19%2B-green.svg?style=flat)]()
 
-Beautiful and animated bi-colored circular progress.
+Awsome animated a bi-colored circular progress.
 
-![screen](https://image.ibb.co/eRz5Zn/device_2018_03_29_001903.png)
+![biColored](https://i.makeagif.com/media/3-29-2018/DKzRJE.gif)
 
 ## Setup
 
@@ -23,7 +23,7 @@ and to your app build.gradle:
 
 ```xml
 dependencies {
-  implementaion 'com.github.arbelkilani:BiColored-Progress:v1.0'
+  implementaion 'com.github.arbelkilani:BiColored-Progress:v1.2'
 }
 ```
 
@@ -51,9 +51,31 @@ dependencies {
 * **stroke_width** (float) - outsider circle stroke width
 * **inner_alpha_factor** (float) - alpha value from outsider to inner color
 
+###### Animation interpolator:
+```java
+
+BiColoredProgress biColoredProgress = findViewById(R.id.twice_colored_progress);
+
+biColoredProgress.setProgress(87f);
+biColoredProgress.setAnimated(true, 4000, new BounceInterpolator());
+```
+
+###### setAnimated attributes :
+```java
+
+/**
+     * 
+     * @param canAnimate : boolean, true if want to have animated progress
+     * @param animationDuration : int, animation duration
+     * @param interpolator : Interpolator, either basic or custom animation interpolator
+ */
+    public void setAnimated(boolean canAnimate, int animationDuration, Interpolator interpolator) {}
+```
+
+
 ## License
 
-    Copyright 2017 Belkilani Ahmed Radhouane
+    Copyright 2018 Belkilani Ahmed Radhouane
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
