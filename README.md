@@ -23,7 +23,7 @@ and to your app build.gradle:
 
 ```xml
 dependencies {
-  implementaion 'com.github.arbelkilani:BiColored-Progress:v1.2'
+  implementation 'com.github.arbelkilani:BiColored-Progress:v1.2'
 }
 ```
 
