@@ -23,7 +23,7 @@ and to your app build.gradle:
 
 ```xml
 dependencies {
-  implementation 'com.github.arbelkilani:BiColored-Progress:v1.2'
+  implementation 'com.github.arbelkilani:BiColored-Progress:v1.4'
 }
 ```
 
@@ -32,14 +32,23 @@ dependencies {
 ```xml
 <com.arbelkilani.bicoloredprogress.BiColoredProgress
         android:id="@+id/twice_colored_progress"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:duration="4000" 
-        app:inner_alpha_factor="0.3" 
-        app:label="Total gain" 
-        app:left_sided_color="@color/colorAccent"
-        app:right_sided_color="@color/colorPrimary"
-        app:stroke_width="4dp" />
+        android:layout_width="@dimen/dimen_150dp"
+        android:layout_height="@dimen/dimen_150dp"
+        android:layout_centerInParent="true"
+        app:duration="4000"
+        app:inner_alpha_factor="0.3"
+        app:label="@string/gain"
+        app:left_sided_color="@color/moss"
+        app:right_sided_color="@color/warm"
+        app:stroke_width="4dp"
+        app:text_color="@color/waterfall"
+        app:text_font="@font/averia_sans_regular" />
+```
+
+```java
+BiColoredProgress biColoredProgress = findViewById(R.id.twice_colored_progress);
+biColoredProgress.setTextFont(R.font.averia_sans_regular);
+biColoredProgress.setColor(R.color.waterfall);
 ```
 
 ###### Params available in all views:
@@ -50,6 +59,9 @@ dependencies {
 * **right_sided_color** (color) - right sided color
 * **stroke_width** (float) - outsider circle stroke width
 * **inner_alpha_factor** (float) - alpha value from outsider to inner color
+* **text_color** (dimension) - text value size
+* **text_font** (reference) - text value font family
+
 
 ###### Animation interpolator:
 ```java
