@@ -3,15 +3,18 @@
 
     <declare-styleable name="TwiceColoredProgress">
 
-        <attr name="stroke_width" format="dimension"/>
-        <attr name="inner_alpha_factor" format="float"/>
+        <attr name="stroke_width" format="dimension" />
+        <attr name="inner_alpha_factor" format="float" />
 
-        <attr name="right_sided_color" format="color"/>
-        <attr name="left_sided_color" format="color"/>
+        <attr name="right_sided_color" format="color" />
+        <attr name="left_sided_color" format="color" />
 
-        <attr name="progress" format="float"/>
-        <attr name="duration" format="integer"/>
-        <attr name="label" format="string"/>
+        <attr name="progress" format="float" />
+        <attr name="duration" format="integer" />
+        <attr name="label" format="string" />
+
+        <attr name="text_color" format="color" />
+        <attr name="text_font" format="reference" />
 
     </declare-styleable>
 

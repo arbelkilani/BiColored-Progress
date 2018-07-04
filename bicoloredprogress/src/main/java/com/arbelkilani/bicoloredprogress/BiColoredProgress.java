@@ -8,8 +8,10 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.text.Layout;
@@ -52,10 +54,13 @@ public class BiColoredProgress extends View {
     private final static float INNER_STROKE_FACTOR = 0.2f;
 
     // label
-    private final static float TEXT_FACTOR = 0.2f;
+    private final static float TEXT_FACTOR = 0.16f;
     private final static String PERCENT = "%";
     private final static float SPAN_FACTOR = 0.6f;
     private final static float LABEL_FACTOR = 0.6f;
+
+    private int mTextValueColor;
+    private int mTextValueFont;
 
     protected int mWidth;
     protected int mStrokeWidth;
@@ -107,6 +112,9 @@ public class BiColoredProgress extends View {
             mLabel = typedArray.getString(R.styleable.TwiceColoredProgress_label);
 
             mDuration = typedArray.getInt(R.styleable.TwiceColoredProgress_duration, DEFAULT_ANIMATION_DURATION);
+
+            mTextValueColor = typedArray.getColor(R.styleable.TwiceColoredProgress_text_color, Color.BLACK);
+            mTextValueFont = typedArray.getResourceId(R.styleable.TwiceColoredProgress_text_font, R.font.gotham_bold);
 
             mInterpolator = new AccelerateDecelerateInterpolator();
             typedArray.recycle();
@@ -165,14 +173,17 @@ public class BiColoredProgress extends View {
      */
     private void drawProgressValue(int x, int y, Canvas canvas, float progress) {
 
-        TextPaint paint = new TextPaint();
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(mWidth * TEXT_FACTOR);
+        TextPaint textPaint = new TextPaint();
+        textPaint.setColor(mTextValueColor);
+        textPaint.setStyle(Paint.Style.FILL);
+        textPaint.setTextSize(mWidth * TEXT_FACTOR);
+
+        Typeface typeface = ResourcesCompat.getFont(getContext(), mTextValueFont);
+        textPaint.setTypeface(typeface);
 
         SpannableStringBuilder spannableString = getSpannableValue(progress);
 
-        StaticLayout layout = new StaticLayout(spannableString, paint, canvas.getWidth(), Layout.Alignment.ALIGN_CENTER, 1, 1, true);
+        StaticLayout layout = new StaticLayout(spannableString, textPaint, canvas.getWidth(), Layout.Alignment.ALIGN_CENTER, 1, 1, true);
         canvas.translate(x - layout.getWidth() / 2, y - layout.getHeight() / 2);
         layout.draw(canvas);
     }
@@ -325,5 +336,21 @@ public class BiColoredProgress extends View {
 
             invalidate();
         }
+    }
+
+    /**
+     * @param font
+     */
+    public void setTextFont(int font) {
+        mTextValueFont = font;
+        invalidate();
+    }
+
+    /**
+     * @param color
+     */
+    public void setColor(int color) {
+        mTextValueColor = color;
+        invalidate();
     }
 }

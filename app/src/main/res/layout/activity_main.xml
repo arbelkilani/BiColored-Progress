@@ -16,6 +16,8 @@
         app:label="@string/gain"
         app:left_sided_color="@color/moss"
         app:right_sided_color="@color/warm"
-        app:stroke_width="4dp" />
+        app:stroke_width="4dp"
+        app:text_color="@color/circular_progress_default_background"
+        app:text_font="@font/chawp" />
 
 </RelativeLayout>

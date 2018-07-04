@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
         mBiColoredProgress = findViewById(R.id.twice_colored_progress);
         mBiColoredProgress.setProgress(VALUE);
+
+        //mBiColoredProgress.setTextFont(R.font.chawp);
+        //mBiColoredProgress.setColor(R.color.ocean_breeze);
     }
 
     @Override
