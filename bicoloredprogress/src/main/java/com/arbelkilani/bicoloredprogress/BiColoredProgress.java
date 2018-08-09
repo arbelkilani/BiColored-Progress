@@ -53,6 +53,8 @@ public class BiColoredProgress extends View {
     private final static float START_ANGLE = 270f;
     private final static float INNER_STROKE_FACTOR = 0.2f;
 
+    private final static float MAX_UNIT_CHARACTERS = 5;
+
     // label
     private final static float TEXT_FACTOR = 0.16f;
     private final static String PERCENT = "%";
@@ -69,6 +71,7 @@ public class BiColoredProgress extends View {
     protected float mSweepAngle;
     protected float mProgress;
     protected String mLabel;
+    protected String mUnit;
     protected int mDuration;
     protected Interpolator mInterpolator;
 
@@ -91,6 +94,18 @@ public class BiColoredProgress extends View {
         init(context, attrs);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int size;
+        if (widthMeasureSpec < heightMeasureSpec) {
+            size = widthMeasureSpec;
+        } else {
+            size = heightMeasureSpec;
+        }
+
+        super.onMeasure(size, size);
+    }
+
     /**
      * @param context
      * @param attrs
@@ -110,6 +125,7 @@ public class BiColoredProgress extends View {
 
             mProgress = typedArray.getFloat(R.styleable.TwiceColoredProgress_progress, DEFAULT_PROGRESS);
             mLabel = typedArray.getString(R.styleable.TwiceColoredProgress_label);
+            mUnit = typedArray.getString(R.styleable.TwiceColoredProgress_unit);
 
             mDuration = typedArray.getInt(R.styleable.TwiceColoredProgress_duration, DEFAULT_ANIMATION_DURATION);
 
@@ -201,11 +217,21 @@ public class BiColoredProgress extends View {
         String textProgress = df.format(progress);
 
         textProgress = !textProgress.contains(".") ? textProgress : textProgress.replaceAll("0*$", "").replaceAll("\\.$", ""); // remove .0 in end of string 89.0 -> 89
-        textProgress = textProgress + PERCENT; // append percent to string
+
+        int unitSize = 1;
+        if (mUnit != null && !TextUtils.isEmpty(mUnit)) {
+            textProgress = textProgress + mUnit;
+            unitSize = mUnit.length();
+            if (mUnit.length() > MAX_UNIT_CHARACTERS) {
+                throw new IllegalArgumentException("Unit length could not be more than ( " + MAX_UNIT_CHARACTERS + " ) characters");
+            }
+        } else {
+            textProgress = textProgress + PERCENT; // append percent as default value for unit value
+        }
 
         SpannableStringBuilder spannableString = new SpannableStringBuilder(textProgress);
-        spannableString.setSpan(new SuperscriptSpan(), spannableString.length() - 1, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        spannableString.setSpan(new RelativeSizeSpan(SPAN_FACTOR), spannableString.length() - 1, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // se superscript percent
+        spannableString.setSpan(new SuperscriptSpan(), spannableString.length() - unitSize, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new RelativeSizeSpan(SPAN_FACTOR), spannableString.length() - unitSize, spannableString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); // set superscript percent
 
         if (!TextUtils.isEmpty(mLabel)) {
             spannableString.append("\n");
@@ -351,6 +377,14 @@ public class BiColoredProgress extends View {
      */
     public void setColor(int color) {
         mTextValueColor = color;
+        invalidate();
+    }
+
+    /**
+     * @param unit
+     */
+    public void setUnit(String unit) {
+        mUnit = unit;
         invalidate();
     }
 }

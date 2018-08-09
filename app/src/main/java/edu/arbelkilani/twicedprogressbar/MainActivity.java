@@ -17,7 +17,7 @@ import com.arbelkilani.bicoloredprogress.BiColoredProgress;
 public class MainActivity extends AppCompatActivity {
 
     private final static int DURATION = 5000;
-    private final static float VALUE = 87f;
+    private final static float VALUE = 90f;
 
     private BiColoredProgress mBiColoredProgress;
 
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         mBiColoredProgress = findViewById(R.id.twice_colored_progress);
         mBiColoredProgress.setProgress(VALUE);
+        mBiColoredProgress.setUnit("kg");
 
         //mBiColoredProgress.setTextFont(R.font.chawp);
         //mBiColoredProgress.setColor(R.color.ocean_breeze);

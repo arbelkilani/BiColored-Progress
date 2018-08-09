@@ -9,5 +9,6 @@
     <string name="overshoot">OvershootInterpolator</string>
     <string name="accelerateDecelerate">AccelerateDecelerateInterpolator</string>
     <string name="anticipate">AnticipateInterpolator</string>
+    <string name="weight">weight</string>
 
 </resources>

@@ -12,6 +12,7 @@
         <attr name="progress" format="float" />
         <attr name="duration" format="integer" />
         <attr name="label" format="string" />
+        <attr name="unit" format="string"/>
 
         <attr name="text_color" format="color" />
         <attr name="text_font" format="reference" />
