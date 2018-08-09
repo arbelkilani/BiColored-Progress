@@ -23,7 +23,7 @@ and to your app build.gradle:
 
 ```xml
 dependencies {
-  implementation 'com.github.arbelkilani:BiColored-Progress:v1.4'
+  implementation 'com.github.arbelkilani:BiColored-Progress:v1.5'
 }
 ```
 
@@ -42,13 +42,17 @@ dependencies {
         app:right_sided_color="@color/warm"
         app:stroke_width="4dp"
         app:text_color="@color/waterfall"
-        app:text_font="@font/averia_sans_regular" />
+        app:text_font="@font/averia_sans_regular"
+        app:unit="kg"/>
 ```
 
 ```java
 BiColoredProgress biColoredProgress = findViewById(R.id.twice_colored_progress);
 biColoredProgress.setTextFont(R.font.averia_sans_regular);
 biColoredProgress.setColor(R.color.waterfall);
+
+biColoredProgress.setUnit("kg");
+
 ```
 
 ###### Params available in all views:
@@ -61,6 +65,7 @@ biColoredProgress.setColor(R.color.waterfall);
 * **inner_alpha_factor** (float) - alpha value from outsider to inner color
 * **text_color** (dimension) - text value size
 * **text_font** (reference) - text value font family
+* **unit** (string) - superscript value ( length < 5)
 
 
 ###### Animation interpolator:
